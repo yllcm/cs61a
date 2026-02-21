@@ -1,0 +1,18 @@
+>>> from cats import minimum_mewtations, furry_fixes, autocorrect, lines_from_file
+>>> all_words = ['well', 'teen']
+>>> common_words = ['well', 'teen']
+>>> minimum_mewtations.call_count = 0
+>>> autocorrect("woll", common_words, minimum_mewtations, 4)
+'well'
+>>> minimum_mewtations.call_count <= 72000    # minimum_mewtations should be memoized
+True
+>>> minimum_mewtations.call_count = 0
+>>> autocorrect("woll", common_words, furry_fixes, 4)
+'well'
+>>> minimum_mewtations.call_count
+0
+>>> minimum_mewtations.call_count = 0
+>>> autocorrect("woll", common_words, minimum_mewtations, 4)  # identical to the first call
+'well'
+>>> minimum_mewtations.call_count
+1995
